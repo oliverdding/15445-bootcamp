@@ -86,14 +86,26 @@ int main() {
                "after one copy: "
             << s3.use_count() << std::endl;
 
+  std::cout << "Number of shared pointer object instances using the data in s4 "
+               "after one copy: "
+            << s4.use_count() << std::endl;
+
   // Then, s5 is copy-constructed from s4.
   std::shared_ptr<Point> s5(s4);
+
+  std::cout << "Number of shared pointer object instances using the data in s4 "
+               "after one copy: "
+            << s4.use_count() << std::endl;
 
   // Now, the number of references to pointer s3's data should be 3, since s5,
   // s4, and s3 have access to s3's data.
   std::cout << "Number of shared pointer object instances using the data in s3 "
                "after two copies: "
             << s3.use_count() << std::endl;
+
+    std::cout << "Number of shared pointer object instances using the data in s5 "
+               "after two copies: "
+            << s5.use_count() << std::endl;
 
   // Modifying s3's data should also change the data in s4 and s5, since they
   // refer to the same object instance.
